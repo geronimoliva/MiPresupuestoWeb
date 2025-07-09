@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from pdf_generator import generar_pdf
 from nomenclatura import obtener_localidad
-
+import io
 import os
 
 app = Flask(__name__)
@@ -74,6 +74,7 @@ def formulario():
         localidad = obtener_localidad(designacion)
         mensaje_zona_nr = mensaje_zona_nr.replace("NombreLocalidad", localidad)
 
+        buffer = io.BytesIO()
         generar_pdf(
             cliente,
             tarea,
@@ -86,10 +87,20 @@ def formulario():
             nr == "posesion",
             tipo_zona,
             info_formas_pago,
-            mensaje_zona_nr
+            mensaje_zona_nr,
+            buffer
         )
+        buffer.seek(0)
 
-        return "<p>Presupuesto generado correctamente.</p>"
+        # (3) Devolver el PDF directamente como descarga
+        safe_cliente = "".join(c for c in cliente if c.isalnum() or c in (" ", "_")).rstrip()
+        filename = f"Presupuesto de {safe_cliente}.pdf"
+        return send_file(
+            buffer,
+            as_attachment=True,
+            download_name=filename,
+            mimetype='application/pdf'
+        )
     return render_template("formulario.html")
 
 if __name__ == "__main__":
