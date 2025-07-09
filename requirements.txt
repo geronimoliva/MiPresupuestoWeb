@@ -2,6 +2,5 @@ flask
 reportlab
 num2words
 datetime
-hashlib
 nlt
 gunicorn
