@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 from pdf_generator import generar_pdf
 from nomenclatura import obtener_localidad
 import io
