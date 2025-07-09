@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulario de Presupuesto - Modo Oscuro Sobrio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #181a1b;
+      color: #ddd;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #505050 !important;
+      opacity: 1;
+    }
+
+    .container {
+      background-color: #242424;
+      border-radius: 8px;
+      padding: 2rem;
+      max-width: 900px;
+      margin: 2rem auto;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+    }
+
+    h2.title {
+      color: #de5252;
+      font-weight: 700;
+      text-align: center;
+      border-bottom: 3px solid #de5252; /* línea debajo para destacar */
+      padding-bottom: 0.7rem;     /* espacio entre texto y línea */
+    }
+
+    label.label {
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+
+    input.input,
+    textarea.textarea,
+    select {
+      background-color: #2d2d2d;
+      border: 1px solid #505050;
+      color: #eee;
+    }
+
+    input[type="radio"] {
+      accent-color: #de5252;
+      cursor: pointer;
+      appearance: auto;        /* asegura que use el estilo del navegador */
+      transition: transform 0.2s ease;
+    }
+
+    input[type="radio"]:hover {
+      transform: scale(1.2);   /* zoom suave al pasar el mouse */
+    }
+
+    label.radio:hover {
+      color: #de5252;
+      transition: color 0.2s ease, text-decoration 0.2s ease;
+    }
+
+
+    button.button.is-primary {
+      background-color: #3e83ea;
+      color: #f1f5f9;
+      font-weight: 600;
+    }
+
+    button.button.is-primary:hover {
+      background-color: #de5252;  /* color cuando paso el mouse */
+      box-shadow: 0 4px 8px rgba(128, 27, 27, 0.2); /* sombra más intensa */
+    }
+
+    textarea.textarea {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <section class="section">
+    <div class="container">
+      <h2 id="formTitle" class="title is-4 mb-5">MI PRESUPUESTO</h2>
+      <form method="post" action="/formulario" id="presupuestoForm" autocomplete="off">
+        <div class="columns is-variable is-6">
+          <!-- Columna Izquierda -->
+          <div class="column is-half">
+            <div class="field">
+              <label for="cliente" class="label">Solicitante</label>
+              <div class="control">
+                <input type="text" class="input" id="cliente" name="cliente" required placeholder="Cristiano Ronaldo" value=""/>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="monto" class="label">Monto</label>
+              <div class="control">
+                <input type="number" step="5000.00" class="input" id="monto" name="monto" required placeholder="320000" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="tarea" class="label">Tarea</label>
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select id="tarea" name="tarea" required>
+                    <option value="">Seleccione una tarea</option>
+                    <option>Certificado de Amojonamiento</option>
+                    <option>Certificado de Amojonamiento y Relevamiento Topográfico</option>
+                    <option>Informe Pericial</option>
+                    <option>Mensura</option>
+                    <option>Mensura para Juicio de Prescripción Adquisitiva</option>
+                    <option>Verificación de Estado Parcelario</option>
+                    <option>Mensura y Subdivisión</option>
+                    <option>Mensura y Subdivisión para división de Condominio</option>
+                    <option>Mensura y Subdivisón para Futura Unión</option>
+                    <option>Mensura y Subdivisión en Propiedad Horizontal</option>
+                    <option>Mensura y Unión</option>
+                    <option>Mensura, Unión y Subdivisón</option>
+                    <option>Consulta Técnica</option>
+                    <option>Mensura para Prescripción Administrativa</option>
+                    <option>Mensura, Unión y Subdivisón para Futura Unión</option>
+                    <option>Modificación de PH</option>
+                    <option>Mensura y Loteo</option>
+                    <option>Plano Particular</option>
+                    <option>Relevamiento Topográfico</option>
+                    <option>Servicios de Topografía</option>
+                    <option>Servicios de Sistemas de Información Territorial</option>
+                    <option>Topografía y Fotogrametría</option>
+                    <!-- Agregá más opciones si querés -->
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="designacion" class="label">Designación de Inmueble</label>
+              <div class="control">
+                <input type="text" class="input" id="designacion" name="designacion" placeholder="1207250101068004" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="reparticiones" class="label">Reparticiones</label>
+              <div class="control">
+                <textarea class="textarea" id="reparticiones" name="reparticiones" rows="3">Dirección General de Catastro,
+y</textarea>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="profesional" class="label">Profesional</label>
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select id="profesional" name="profesional" required>
+                    <option value="OA">Gerónimo Oliva</option>
+                    <option value="OG">OG Estudio de Agrimensura</option>
+                    <option value="YG">Yair Gantus</option>
+                    <option value="MCRM">María Camila Romero Molinero</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Zona -->
+            <div id="zonaGroup" class="field is-grouped is-flex-wrap-wrap" style="gap: 2rem;">
+              <div>
+                <label class="label mb-2">Tipo de inmueble:</label>
+                <div class="field is-grouped is-grouped-multiline">
+                  <div class="control">
+                    <label class="radio" for="rural">
+                      <input type="radio" name="tipo_zona" id="rural" value="rural"/>
+                      Rural
+                    </label>
+                  </div>
+                  <div class="control">
+                    <label class="radio" for="urbano">
+                      <input type="radio" name="tipo_zona" id="urbano" value="urbano" />
+                      Urbano
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- NR -->
+            <div id="nrGroup" class="field is-grouped is-flex-wrap-wrap" style="gap: 2rem;">
+              <div>
+                <label class="label mb-2">Nota de Rogación:</label>
+                <div class="field is-grouped is-grouped-multiline">
+                  <div class="control">
+                    <label class="radio" for="nr_fe">
+                      <input type="radio" name="nr" id="nr_fe" value="fe" />
+                      Título
+                    </label>
+                  </div>
+                  <div class="control">
+                    <label class="radio" for="nr_posesion">
+                      <input type="radio" name="nr" id="nr_posesion" value="posesion" />
+                      Posesión
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha -->
+          <div class="column is-half">
+            <label for="formas_pago" class="label">Formas de Pago (editable)</label>
+            <textarea class="textarea" id="formas_pago" name="formas_pago" rows="15"></textarea>
+          </div>
+        </div>
+
+        <div class="field mt-5">
+          <div class="control">
+            <button type="submit" class="button is-primary">Generar PDF</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    const montoInput = document.getElementById('monto');
+    const formasPagoTextarea = document.getElementById('formas_pago');
+
+    function formatearMoneda(valor) {
+      return valor.toLocaleString('es-AR', {
+        style: 'currency',
+        currency: 'ARS',
+        minimumFractionDigits: 2
+      });
+    }
+
+    function actualizarFormasPago() {
+      const monto = parseFloat(montoInput.value);
+      if (isNaN(monto) || monto <= 0) {
+        formasPagoTextarea.value = '';
+        return;
+      }
+      formasPagoTextarea.value =
+    `1 PAGO. Total de ${formatearMoneda(monto * 0.96)} (con 4% de descuento en efectivo/transferencia)
+
+2 CUOTAS. La primera será de ${formatearMoneda(monto * 0.81)}, en concepto de adelanto. El saldo de ${formatearMoneda(monto * 0.21)} deberá ser abonado al momento previo a la presentación final.
+
+3 CUOTAS. El primer pago será de ${formatearMoneda(monto * 0.6)} en concepto de adelanto. El segundo pago será de ${formatearMoneda(monto * 0.3)} en concepto de segunda cuota. El saldo de ${formatearMoneda(monto * 0.20)}, deberá ser abonado al momento a la presentación final. (Se añade un interés total del 10%)`;
+}
+
+
+    montoInput.addEventListener('input', actualizarFormasPago);
+    window.addEventListener('DOMContentLoaded', actualizarFormasPago);
+
+    // Ocultar zona y NR si la tarea no los requiere
+    const tareaSelect = document.getElementById('tarea');
+    const radiosZona = document.querySelectorAll('input[name="tipo_zona"]');
+    const radiosNR = document.querySelectorAll('input[name="nr"]');
+    const zonaGroup = document.getElementById('zonaGroup');
+    const nrGroup = document.getElementById('nrGroup');
+
+    const tareasSinNRniZona = [
+      "Certificado de Amojonamiento",
+      "Verificación de Estado Parcelario",
+      "Relevamiento Topográfico",
+      "Consulta Técnica",
+      "Informe Pericial"
+    ];
+
+    function actualizarControlesZonaYNR() {
+      const tarea = tareaSelect.value;
+      const ocultar = tareasSinNRniZona.includes(tarea);
+
+      radiosZona.forEach(r => r.disabled = ocultar);
+      radiosNR.forEach(r => r.disabled = ocultar);
+
+      zonaGroup.style.display = ocultar ? "none" : "";
+      nrGroup.style.display = ocultar ? "none" : "";
+    }
+
+    tareaSelect.addEventListener('change', actualizarControlesZonaYNR);
+    window.addEventListener('DOMContentLoaded', actualizarControlesZonaYNR);
+  </script>
+</body>
+</html>
