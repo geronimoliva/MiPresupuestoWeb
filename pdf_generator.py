@@ -9,6 +9,7 @@ from reportlab.platypus import Paragraph
 
 from monto import monto_a_letras
 import os
+import io
 
 from contenido import generar_contenido
 from monto import formatear_numero
@@ -48,13 +49,12 @@ def generar_pdf(
     tipo_zona: str,
     info_formas_pago: str,
     mensaje_zona_nr: str,
+    destino
 ):
     from reportlab.lib.enums import TA_JUSTIFY
 
     # Crear el PDF
-    nombre_cliente = cliente.replace(" ", " ")
-    pdf_path = f"C:/Users/{os.getlogin()}/Desktop/Presupuesto de {nombre_cliente}.pdf"
-    c = canvas.Canvas(pdf_path, pagesize=A4)
+    c = canvas.Canvas(destino, pagesize=A4)
     ancho, alto = A4
 
     # Generar ID presupuesto
@@ -221,6 +221,3 @@ def generar_pdf(
     # Guardar y cerrar PDF
     c.showPage()
     c.save()
-
-    # Abrir el PDF automáticamente
-    os.startfile(pdf_path)
