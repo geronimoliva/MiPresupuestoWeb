@@ -7,7 +7,7 @@ import hashlib
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import Paragraph
 
-from nlt import numlet as nl
+from monto import monto_a_letras
 import os
 
 from contenido import generar_contenido
@@ -152,7 +152,7 @@ def generar_pdf(
     c.drawString(113, posdineroy3, "TOTAL:")
     justificar_derecha(c, 100, posdineroy3, "$ {}".format(monto_texto))
 
-    resultadoenletras = nl.Numero(float(monto)).a_letras.lower()
+    resultadoenletras = monto_a_letras(monto)
     posdineroy4 = posdineroy3 - 30
     c.setFillColorRGB(0.5, 0.5, 0.5)
     c.setFont("Helvetica", 8)
